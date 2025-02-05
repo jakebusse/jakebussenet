@@ -58,7 +58,18 @@ body {
   border-radius: 15px;
 }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: var(--background);
+.normalCursor {
+  cursor: default;
+}
+
+.specialCursor {
+  cursor: url('/main/avatar_cursor.png'), auto;
+}
+
+.normalCursor .cursor-pointer {
+  cursor: pointer;
+}
+
+.specialCursor .cursor-pointer, .specialCursor a {
+  cursor: url('/main/avatar_wink_cursor.png'), auto;
 }

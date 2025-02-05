@@ -19,6 +19,7 @@ export default function Home() {
   const [darkMode, setDarkMode] = useState(false);
   const [background, setBackground] = useState("bg-gray-800");
   const [foreground, setForeground] = useState("text-gray-100");
+  const [specialCursor, setSpecialCursor] = useState(false);
 
   const navItems = [
     {
@@ -64,7 +65,7 @@ export default function Home() {
   ];
   return (
     <div
-      className={`w-screen h-screen gradient overflow-hidden flex flex-col gap-0`}
+      className={`w-screen h-screen gradient overflow-hidden flex flex-col gap-0 ${specialCursor ? "specialCursor" : "normalCursor"}`}
     >
       <nav
         className={`text-white absolute top-0 left-0 right-0 md:h-[100px] flex flex-no-wrap justify-between p-6 md:py-0 md:px-6 ${
@@ -137,7 +138,7 @@ export default function Home() {
               width={150}
               height={150}
               onMouseEnter={() => setAvatarHover(true)}
-              onMouseLeave={() => setAvatarHover(false)}
+              onMouseLeave={() => {setAvatarHover(false); setSpecialCursor(true)}}
               className="transition-all duration-500 ease-in-out z-30"
             />
             <h2 className="text-4xl text-white font-medium text-center">

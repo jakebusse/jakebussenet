@@ -1,0 +1,22 @@
+import { ReactNode } from "react";
+import "./globals.css";
+
+type CardProps = {
+  id: string;
+  bg: string;
+  fg: string;
+  children: ReactNode;
+};
+
+export default function Card({ id, bg, fg, children }: CardProps) {
+  return (
+    <div
+      className={`w-full h-full overflow-scroll sticky top-0 rounded-xl p-8 ${bg} ${fg} ${
+        id !== "hero" ? "mt-[15vh]" : ""
+      } `}
+      id={id.toString()}
+    >
+      {children}
+    </div>
+  );
+}

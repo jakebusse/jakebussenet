@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --primary-color: #197961;
+  --secondary-color: #1241dc;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground) !important;
+  font-family: Quicksand, Helvetica, sans-serif;
+  background-color: var(--background);
+}
+
+.gradient {
+  background-attachment: fixed;
+  background-image: radial-gradient(
+    farthest-side at 50vw 100vh,
+    #1241dc 0,
+    #197961 100%
+  );
+  background-size: 100vw 100vh;
+}

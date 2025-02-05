@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { CiMenuBurger, CiCircleRemove } from "react-icons/ci";
 import {
@@ -12,6 +12,7 @@ import { FaBluesky } from "react-icons/fa6";
 import Card from "./card";
 import GradientHeader from "./gradient-header";
 import "./globals.css";
+import "./main.css";
 
 export default function Home() {
   const [navOpen, setNavOpen] = useState(false);
@@ -20,6 +21,19 @@ export default function Home() {
   const [background, setBackground] = useState("bg-gray-800");
   const [foreground, setForeground] = useState("text-gray-100");
   const [specialCursor, setSpecialCursor] = useState(false);
+  const [time, setTime] = useState(new Date());
+
+  useEffect(() => {
+    const interval = setInterval(() => setTime(new Date()), 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const formattedTime = Number(
+    new Intl.DateTimeFormat("en-GB", {
+      hour: "numeric",
+      hour12: false,
+    }).format(time)
+  );
 
   const navItems = [
     {
@@ -50,22 +64,24 @@ export default function Home() {
     {
       id: "bluesky",
       icon: <FaBluesky />,
-      url: "",
+      url: "https://bsky.app/profile/jakerbusse.bsky.social",
     },
     {
       id: "email",
       icon: <FaEnvelope />,
-      url: "https://instagram.com/jakerbusse",
+      url: "mailto:jakerbusse@outlook.com",
     },
     {
       id: "phone",
       icon: <FaPhoneAlt />,
-      url: "https://instagram.com/jakerbusse",
+      url: "tel:6516051932",
     },
   ];
   return (
     <div
-      className={`w-screen h-screen gradient overflow-hidden flex flex-col gap-0 ${specialCursor ? "specialCursor" : "normalCursor"}`}
+      className={`w-screen h-screen gradient overflow-hidden flex flex-col gap-0 fixed top-0 bottom-0 left-0 right-0 ${
+        specialCursor ? "specialCursor" : "normalCursor"
+      }`}
     >
       <nav
         className={`text-white absolute top-0 left-0 right-0 md:h-[100px] flex flex-no-wrap justify-between p-6 md:py-0 md:px-6 ${
@@ -135,14 +151,26 @@ export default function Home() {
             <Image
               src={avatarHover ? "/main/avatar_wink.png" : "/main/avatar.png"}
               alt={"Jake Busse avatar"}
-              width={150}
-              height={150}
+              width={100}
+              height={100}
               onMouseEnter={() => setAvatarHover(true)}
-              onMouseLeave={() => {setAvatarHover(false); setSpecialCursor(true)}}
-              className="transition-all duration-500 ease-in-out z-30"
+              onMouseLeave={() => {
+                setAvatarHover(false);
+                setSpecialCursor(true);
+              }}
+              className="transition-all duration-500 ease-in-out z-30 w-auto h-auto"
+              priority
             />
             <h2 className="text-4xl text-white font-medium text-center">
-              Good Morning, I'm Jake
+              Good{" "}
+              {formattedTime < 12
+                ? "Morning"
+                : formattedTime === 12
+                ? "Day"
+                : formattedTime > 12 && formattedTime < 5
+                ? "Afternoon"
+                : "Evening"}
+              , I'm Jake
             </h2>
             <span className="text-2xl text-white text-center">
               Welcome to my humble corner of the web.

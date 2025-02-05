@@ -31,3 +31,34 @@ body {
   );
   background-size: 100vw 100vh;
 }
+
+#container {
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+}
+
+.card {
+  scroll-snap-align: start;
+  scroll-snap-type: y mandatory;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--secondary-color);
+  border-radius: 15px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--background);
+}

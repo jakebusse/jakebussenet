@@ -127,7 +127,7 @@ export default function Home() {
       </nav>
       <div
         id="container"
-        className="fixed top-[100px] right-0 bottom-0 left-0 overflow-scroll p-8 pt-0 gap-32 select-none"
+        className="fixed top-[100px] right-0 bottom-0 left-0 overflow-y-scroll p-8 pt-0 gap-32 select-none"
       >
         <Card id="hero" bg="transparent" fg="white">
           <div className="w-full h-full flex flex-col items-center justify-center gap-4">

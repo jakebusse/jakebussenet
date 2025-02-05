@@ -11,7 +11,7 @@ type CardProps = {
 export default function Card({ id, bg, fg, children }: CardProps) {
   return (
     <div
-      className={`card w-full h-full sticky top-0 rounded-xl p-8 ${bg} ${fg} ${
+      className={`card w-full h-full overflow-y-scroll overscroll-contain sticky top-0 rounded-xl p-6 ${bg} ${fg} ${
         id !== "hero" ? "mt-[15vh]" : ""
       } `}
       id={id.toString()}

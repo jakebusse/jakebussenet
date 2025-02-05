@@ -22,6 +22,49 @@ export default function Home() {
   const [foreground, setForeground] = useState("text-gray-100");
   const [specialCursor, setSpecialCursor] = useState(false);
   const [time, setTime] = useState(new Date());
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const cards = [
+    {
+      image: "https://source.unsplash.com/random",
+      title: "Card 1",
+      description: "Info which directs to the other page.",
+    },
+    {
+      image: "https://source.unsplash.com/random",
+      title: "Card 2",
+      description: "Info which directs to the other page.",
+    },
+    {
+      image: "https://source.unsplash.com/random",
+      title: "Card 3",
+      description: "Info which directs to the other page.",
+    },
+    {
+      image: "https://source.unsplash.com/random",
+      title: "Card 4",
+      description: "Info which directs to the other page.",
+    },
+    {
+      image: "https://source.unsplash.com/random",
+      title: "Card 5",
+      description: "Info which directs to the other page.",
+    },
+  ];
+
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % cards.length);
+  };
+
+  const handlePrev = () => {
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + cards.length) % cards.length
+    );
+  };
+  if (currentIndex > cards.length - 3) {
+    console.log(currentIndex);
+    setCurrentIndex(0);
+    console.log("hi");
+  }
 
   useEffect(() => {
     const interval = setInterval(() => setTime(new Date()), 1000);
@@ -144,7 +187,7 @@ export default function Home() {
       </nav>
       <div
         id="container"
-        className="fixed top-[100px] right-0 bottom-0 left-0 overflow-y-scroll p-8 pt-0 gap-32 select-none"
+        className="fixed top-[100px] right-0 bottom-0 left-0 overflow-y-scroll p-8 pt-0 gap-32 select-none focus:outline-none"
       >
         <Card id="hero" bg="transparent" fg="white">
           <div className="w-full h-full flex flex-col items-center justify-center gap-4">
@@ -178,12 +221,39 @@ export default function Home() {
           </div>
         </Card>
         <Card id="about" bg={background} fg={foreground}>
-          <div className="w-full h-full flex flex-row flex-wrap justify-between">
-            <div className="w-full md:w-2/3">
+          <div className="w-full h-full flex flex-row flex-no-wrap gap-6 justify-between">
+            <div className="w-full md:w-2/3 space-y-4">
               <GradientHeader>About Me</GradientHeader>
-              <p>A</p>
+              <p>Hey, I’m Jake.</p>
+              <p>
+                I’m a firm believer that curiosity and caffeine fuel the best
+                ideas. Whether I’m troubleshooting a stubborn piece of
+                technology or diving into a new topic just for the thrill of
+                learning, I’m always looking for ways to make things work
+                better, faster, and smarter.
+              </p>
+              <p>
+                Beyond the world of IT, I’m an avid thinker, road trip planner,
+                and proud cat parent. My four feline companions keep me grounded
+                (and mildly entertained), proving that life is best balanced
+                between structured problem-solving and spontaneous chaos.
+              </p>
+              <p>
+                I thrive on understanding how things work—whether it’s
+                technology, systems, or people. My approach to life is a mix of
+                pragmatism, humor, and just enough overthinking to keep things
+                interesting. While I spend plenty of time in the tech world, I
+                believe the best solutions come from looking beyond the screen
+                and connecting with people.
+              </p>
+              <p>
+                When I’m not deep in a project or wrangling my ever-growing
+                to-do list, you’ll probably find me exploring new places or
+                planning my next adventure. Always happy to chat—especially if
+                it involves tech, cats, or something interesting to figure out!
+              </p>
             </div>
-            <div className="bg-[url(/main/headshot.png)] bg-center bg-contain bg-no-repeat md:bg-cover w-full min-h-full md:w-1/3 rounded-lg">
+            <div className="hidden md:block bg-[url(/main/headshot.png)] bg-center bg-contain bg-no-repeat md:bg-cover w-full min-h-full md:w-1/3 rounded-lg">
               &nbsp;
             </div>
           </div>

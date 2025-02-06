@@ -1,4 +1,4 @@
-@import "./globals.css";
+@import "../globals.css";
 
 #container {
   scroll-behavior: smooth;
@@ -8,8 +8,13 @@
 
 .card {
   scroll-snap-align: start;
-  scroll-snap-type: y mandatory;
-  scroll-snap-stop: always;
+}
+
+.card:focus-within,
+.card[data-snap-active] {
+  /* Alternative to focus-within for custom logic */
+
+  transform: scale(0.9); /* Shrink on snap */
 }
 
 /* width */

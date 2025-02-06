@@ -125,8 +125,8 @@ export default function Home() {
       id: "about",
       key: 2,
       content: (
-        <div className="w-full h-full flex flex-row flex-no-wrap gap-6 justify-between">
-          <div className="w-full md:w-2/3 space-y-4">
+        <div className="w-full lg:h-full flex flex-row flex-wrap-reverse gap-6 justify-center lg:justify-between lg:flex-nowrap">
+          <div className="space-y-4">
             <GradientHeader>About Me</GradientHeader>
             <p>Hey, I’m Jake.</p>
             <p>
@@ -157,9 +157,13 @@ export default function Home() {
               tech, cats, or something interesting to figure out!
             </p>
           </div>
-          <div className="hidden md:block bg-[url(/main/headshot.png)] bg-center bg-contain bg-no-repeat md:bg-cover w-full min-h-full md:w-1/3 rounded-lg">
-            &nbsp;
-          </div>
+          <Image
+            src="/main/headshot.png"
+            width={400}
+            height={0}
+            alt="Jake Busse headshot"
+            className="rounded-lg user-select-none max-h-full transition-all duration-500 ease-in-out scale-95 hover:scale-100"
+          />
         </div>
       ),
     },
